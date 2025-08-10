@@ -8,6 +8,8 @@ const fa = Object.freeze({
     createNewAccount: 'ایجاد حساب کاربری',
     switchToPersian: 'تغییر زبان به فارسی',
     switchToEnglish: 'تغییر زبان به انگلیسی',
+    userSuccessLogin: 'کاربر با موفقیت احراز شد',
+    wrongAuthPayload: 'نام کاربری یا رمز عبور اشتباه است',
 })
 
 export default fa;

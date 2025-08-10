@@ -4,24 +4,28 @@ import { useTranslation } from "@/configs/providers/translations";
 import { useInputRules } from "@/hooks/useFormUtils";
 import useRedirect from "@/hooks/useRedirect";
 import { ILoginBody } from "@/services/auth/auth.types";
-import { Button, Card, Flex, Form, Input, Space, Typography } from "antd";
+import { useFakeLogin } from "@/services/auth/useAuth.queries";
+import { Button, Card, Form, Input, Space, Typography } from "antd";
 import { useForm } from "antd/es/form/Form";
 
 export default function Login() {
 
   const [form] = useForm<ILoginBody>();
 
+
   const onSubmit = (values: ILoginBody) => {
-    console.log('values :>> ', values);
+    loginApi(values)
   }
 
-   const { t } = useTranslation();
+
+  const { loginApi, waitingForAuthorize } = useFakeLogin();
+  const { t } = useTranslation();
   const { navigateToRegister } = useRedirect();
   const { passwordRules } = useInputRules();
 
   return (
     <Card className="w-96">
-      <Form form={form} clearOnDestroy onFinish={onSubmit} className="text-end">
+      <Form form={form} clearOnDestroy onFinish={onSubmit} className="text-end" disabled={waitingForAuthorize}>
         <Space direction="vertical">
 
           <Form.Item<ILoginBody> name={"username"} label={t("username")} rules={passwordRules}>

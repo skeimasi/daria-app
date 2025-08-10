@@ -8,6 +8,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { TranslationProvider } from "@/configs/providers/translations";
 import { Header } from "antd/es/layout/layout";
 import AppHeader from "@/components/ui/header";
+import { App as AntdApp } from "antd"
 
 
 const geistSans = Geist({
@@ -32,18 +33,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" dir="rtl">
-      <TranslationProvider>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          <AppHeader />
-          <ReactQueryProviders>
-            <ConfigProvider theme={antdThemeConfig}>
-              <AntdRegistry>{children}</AntdRegistry>
-            </ConfigProvider>
-          </ReactQueryProviders>
-        </body>
-      </TranslationProvider>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <TranslationProvider>
+          <AntdApp>
+            <AppHeader />
+            <ReactQueryProviders>
+              <ConfigProvider theme={antdThemeConfig}>
+                <AntdRegistry>{children}</AntdRegistry>
+              </ConfigProvider>
+            </ReactQueryProviders>
+          </AntdApp>
+        </TranslationProvider>
+      </body>
     </html>
   );
 }
