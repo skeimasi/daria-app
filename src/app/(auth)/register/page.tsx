@@ -1,13 +1,13 @@
 "use client"
 
-import { useTranslation } from "@/configs/providers/translations";
 import { useInputRules } from "@/hooks/useFormUtils";
 import useRedirect from "@/hooks/useRedirect";
 import { ILoginBody } from "@/services/auth/auth.types";
 import { Button, Card, Flex, Form, Input, Space, Typography } from "antd";
 import { useForm } from "antd/es/form/Form";
+import { useTranslation } from "@/configs/providers/translations";
 
-export default function Login() {
+export default function Register() {
 
   const [form] = useForm<ILoginBody>();
 
@@ -15,9 +15,9 @@ export default function Login() {
     console.log('values :>> ', values);
   }
 
-   const { t } = useTranslation();
-  const { navigateToRegister } = useRedirect();
-  const { passwordRules } = useInputRules();
+  const { t } = useTranslation();
+  const { navigateToLogin } = useRedirect();
+  const { passwordRules, confirmPasswordRules } = useInputRules();
 
   return (
     <Card className="w-96">
@@ -32,8 +32,17 @@ export default function Login() {
             <Input />
           </Form.Item>
 
-          <Typography.Link onClick={navigateToRegister}>
-            {t("createNewAccount")}
+          <Form.Item
+            label={t("confirmPassword")}
+            name="password2"
+            dependencies={['password']}
+            rules={confirmPasswordRules}
+          >
+            <Input />
+          </Form.Item>
+
+          <Typography.Link onClick={navigateToLogin}>
+            {t("haveAccountQuestion")}
           </Typography.Link>
 
           <Form.Item>

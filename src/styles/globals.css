@@ -19,6 +19,46 @@
   }
 } */
 
+@font-face {
+  font-family: "IranSansX";
+  src: url("/fonts/IranSansX/IRANSansMonoSpacedNum_Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IranSansX";
+  src: url("/fonts/IranSansX/IRANSansMonoSpacedNum_Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IranSansX";
+  src: url("/fonts/IranSansX/IRANSansMonoSpacedNum.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IranSansX";
+  src: url("/fonts/IranSansX/IRANSansMonoSpacedNum_Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IranSansX";
+  src: url("/fonts/IranSansX/IRANSansMonoSpacedNum_UltraLight.woff2") format("woff2");
+  font-weight: 150;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   /* background: var(--background);
   color: var(--foreground); */

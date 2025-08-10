@@ -1,7 +1,8 @@
 "use client"
 
-import { Col, Flex, Layout, Row } from "antd";
+import { Col, Flex, Image, Layout, Row } from "antd";
 import '@ant-design/v5-patch-for-react-19';
+import React from "react";
 
 export default function AuthLayout({
     children,
@@ -9,11 +10,10 @@ export default function AuthLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <Row>
-            <Col span={18} className="bg-red-100 h-screen">AAAAA</Col>
-            <Col>
+        <div className="relative h-screen overflow-hidden">
+            <div className="absolute w-64 h-64 left-1/2 -translate-y-1/2 top-1/2">
                 {children}
-            </Col>
-        </Row>
+            </div>
+        </div>
     );
 }

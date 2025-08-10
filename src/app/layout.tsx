@@ -1,9 +1,13 @@
+import ReactQueryProviders from "@/configs/providers/react-query";
 import "@/styles/globals.css";
 import antdThemeConfig from "@/styles/themes/config";
 import { AntdRegistry } from '@ant-design/nextjs-registry';
-import { ConfigProvider, theme } from "antd";
+import { ConfigProvider, theme, Typography } from "antd";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { TranslationProvider } from "@/configs/providers/translations";
+import { Header } from "antd/es/layout/layout";
+import AppHeader from "@/components/ui/header";
 
 
 const geistSans = Geist({
@@ -27,14 +31,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <ConfigProvider theme={antdThemeConfig}>
-          <AntdRegistry>{children}</AntdRegistry>
-        </ConfigProvider>
-      </body>
+    <html lang="en" dir="rtl">
+      <TranslationProvider>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <AppHeader />
+          <ReactQueryProviders>
+            <ConfigProvider theme={antdThemeConfig}>
+              <AntdRegistry>{children}</AntdRegistry>
+            </ConfigProvider>
+          </ReactQueryProviders>
+        </body>
+      </TranslationProvider>
     </html>
   );
 }
