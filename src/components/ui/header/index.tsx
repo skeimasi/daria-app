@@ -1,6 +1,6 @@
 "use client"
 
-import { useTranslation } from "@/configs/providers/translations";
+import { useTranslation } from "@/configs/providers/TranslationProvider";
 import { useAppDispatch } from "@/configs/redux/hooks";
 import useRedirect from "@/hooks/useRedirect";
 import { addUserLogs } from "@/states/userActivities/logStates";

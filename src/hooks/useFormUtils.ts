@@ -1,4 +1,4 @@
-import { useTranslation } from "@/configs/providers/translations";
+import { useTranslation } from "@/configs/providers/TranslationProvider";
 import { Rule } from "antd/es/form";
 
 export const useInputRules = () => {

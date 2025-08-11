@@ -1,5 +1,5 @@
 import { AppConfigs } from "@/configs/constants/Configs";
-import { useTranslation } from "@/configs/providers/translations";
+import { useTranslation } from "@/configs/providers/TranslationProvider";
 import { useAppDispatch, useAppSelector } from "@/configs/redux/hooks";
 import useRedirect from "@/hooks/useRedirect";
 import { addUserLogs, selectorUserLogs } from "@/states/userActivities/logStates";

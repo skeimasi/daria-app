@@ -8,7 +8,7 @@ import type { FilterDropdownProps } from 'antd/es/table/interface';
 import Highlighter from 'react-highlight-words';
 import { useGetUsers } from '@/services/users/useGetUsers';
 import { IUserObject } from '@/services/users/users.types';
-import { useTranslation } from "@/configs/providers/translations";
+import { useTranslation } from "@/configs/providers/TranslationProvider";
 import { useAppDispatch } from '@/configs/redux/hooks';
 import { addUserLogs } from '@/states/userActivities/logStates';
 

@@ -1,7 +1,7 @@
 "use client"
 
 import { Routes } from '@/configs/constants/Routes';
-import { useTranslation } from "@/configs/providers/translations";
+import { useTranslation } from "@/configs/providers/TranslationProvider";
 import useRedirect from '@/hooks/useRedirect';
 import {
     DesktopOutlined,

@@ -1,7 +1,7 @@
 import AppHeader from "@/components/ui/header";
-import ReactQueryProviders from "@/configs/providers/react-query";
-import { TranslationProvider } from "@/configs/providers/translations";
-import StoreProvider from "@/configs/redux/StoreProvider";
+import ReactQueryProvider from "@/configs/providers/ReactQueryProvider";
+import StoreProvider from "@/configs/providers/StoreProvider";
+import { TranslationProvider } from "@/configs/providers/TranslationProvider";
 import "@/styles/globals.css";
 import antdThemeConfig from "@/styles/themes/config";
 import { AntdRegistry } from '@ant-design/nextjs-registry';
@@ -39,11 +39,11 @@ export default function RootLayout({
           <TranslationProvider>
             <AntdApp>
               <AppHeader />
-              <ReactQueryProviders>
+              <ReactQueryProvider>
                 <ConfigProvider theme={antdThemeConfig}>
                   <AntdRegistry>{children}</AntdRegistry>
                 </ConfigProvider>
-              </ReactQueryProviders>
+              </ReactQueryProvider>
             </AntdApp>
           </TranslationProvider>
         </StoreProvider>

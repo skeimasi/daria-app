@@ -1,6 +1,6 @@
 "use client"
 
-import { useTranslation } from "@/configs/providers/translations";
+import { useTranslation } from "@/configs/providers/TranslationProvider";
 import { useAppSelector } from '@/configs/redux/hooks';
 import { selectorUserLogs, UserLogs } from '@/states/userActivities/logStates';
 import { SearchOutlined } from '@ant-design/icons';
