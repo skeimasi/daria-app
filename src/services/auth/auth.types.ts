@@ -1,3 +1,5 @@
+import { IBaseResponse } from "../base.types";
+
 export interface ILoginBody {
     username: string;
     password: string;
@@ -10,5 +12,12 @@ export type FakeUserModel = {
 
 export type IRegisterBody = ILoginBody;
 
-export interface ILoginResponse { }
-export interface IRegisterResponse { }
+export interface ILoginResponseObject {
+  token: string;
+}
+
+export interface IRegisterResponseObject {
+}
+
+export type ILoginResponse =  IBaseResponse<ILoginResponseObject>
+export type IRegisterResponse =  IBaseResponse<IRegisterResponseObject>

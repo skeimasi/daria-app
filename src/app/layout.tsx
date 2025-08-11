@@ -1,14 +1,13 @@
+import AppHeader from "@/components/ui/header";
 import ReactQueryProviders from "@/configs/providers/react-query";
+import { TranslationProvider } from "@/configs/providers/translations";
+import StoreProvider from "@/configs/redux/StoreProvider";
 import "@/styles/globals.css";
 import antdThemeConfig from "@/styles/themes/config";
 import { AntdRegistry } from '@ant-design/nextjs-registry';
-import { ConfigProvider, theme, Typography } from "antd";
+import { App as AntdApp, ConfigProvider } from "antd";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { TranslationProvider } from "@/configs/providers/translations";
-import { Header } from "antd/es/layout/layout";
-import AppHeader from "@/components/ui/header";
-import { App as AntdApp } from "antd"
 
 
 const geistSans = Geist({
@@ -34,18 +33,20 @@ export default function RootLayout({
   return (
     <html lang="en" dir="rtl">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-hidden`}
       >
-        <TranslationProvider>
-          <AntdApp>
-            <AppHeader />
-            <ReactQueryProviders>
-              <ConfigProvider theme={antdThemeConfig}>
-                <AntdRegistry>{children}</AntdRegistry>
-              </ConfigProvider>
-            </ReactQueryProviders>
-          </AntdApp>
-        </TranslationProvider>
+        <StoreProvider>
+          <TranslationProvider>
+            <AntdApp>
+              <AppHeader />
+              <ReactQueryProviders>
+                <ConfigProvider theme={antdThemeConfig}>
+                  <AntdRegistry>{children}</AntdRegistry>
+                </ConfigProvider>
+              </ReactQueryProviders>
+            </AntdApp>
+          </TranslationProvider>
+        </StoreProvider>
       </body>
     </html>
   );

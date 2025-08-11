@@ -1,5 +1,5 @@
 import apiClient from "@/configs/axios/axios.interceptor";
-import { FakeUserModel, ILoginBody, ILoginResponse } from "./auth.types";
+import { FakeUserModel, ILoginBody, ILoginResponse, ILoginResponseObject, IRegisterBody, IRegisterResponse, IRegisterResponseObject } from "./auth.types";
 import { EndPoints } from "@/configs/constants/EndPoints";
 
 export const loginApi = async (body: ILoginBody) => {
@@ -10,20 +10,63 @@ export const loginApi = async (body: ILoginBody) => {
     return r.data;
 }
 
-export async function fakeLoginApi(body: ILoginBody): Promise<FakeUserModel> {
+export async function fakeLoginApi(body: ILoginBody): Promise<ILoginResponse> {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            if (body.username === "admin" && body.password === "1234") {
-                const user: FakeUserModel = {
-                    username: body.username,
+
+            const user = localStorage.getItem("user");
+            if (!user) {
+                reject(new Error("userDoesntExisted"));
+                return;
+            }
+
+            const userObject: ILoginBody = JSON.parse(user);
+            if (userObject.username === body.username && userObject.username === body.username) {
+                const user: ILoginResponseObject = {
                     token: "fake-jwt-token-" + Date.now(),
                 };
-
-                localStorage.setItem("user", JSON.stringify(user));
-                resolve(user);
-            } else {
+                localStorage.setItem("token", JSON.stringify(user.token));
+                resolve({
+                    data: user,
+                    error: null,
+                    message: "",
+                    status: true
+                });
+            }
+            else {
                 reject(new Error("wrongAuthPayload"));
             }
+
+            // if (body.username === "admin" && body.password === "1234") {
+            //     const user: ILoginResponseObject = {
+            //         token: "fake-jwt-token-" + Date.now(),
+            //     };
+            //     localStorage.setItem("token", JSON.stringify(user.token));
+            //     resolve({
+            //         data: user,
+            //         error: null,
+            //         message: "",
+            //         status: true
+            //     });
+            // } else {
+            //     reject(new Error("wrongAuthPayload"));
+            // }
+        }, 800);
+    });
+}
+
+export async function fakeRegisterApi(body: IRegisterBody): Promise<IRegisterResponse> {
+    return new Promise((resolve, _reject) => {
+        setTimeout(() => {
+            const response: IRegisterResponseObject = {
+            };
+            localStorage.setItem("user", JSON.stringify(body));
+            resolve({
+                data: response,
+                error: null,
+                message: "",
+                status: true
+            });
         }, 800);
     });
 }

@@ -1,27 +1,25 @@
 "use client"
 
-import { useTranslation } from "@/configs/providers/translations";
 import { useInputRules } from "@/hooks/useFormUtils";
-import useRedirect from "@/hooks/useRedirect";
 import { ILoginBody } from "@/services/auth/auth.types";
-import { useFakeLogin } from "@/services/auth/useAuth.queries";
+import { useFakeLogin } from "@/services/auth/useAuthQueries";
 import { Button, Card, Form, Input, Space, Typography } from "antd";
 import { useForm } from "antd/es/form/Form";
 
 export default function Login() {
 
   const [form] = useForm<ILoginBody>();
-
+  const {
+    t,
+    navigateToRegister,
+    loginApi,
+    waitingForAuthorize
+  } = useFakeLogin();
+  const { passwordRules } = useInputRules();
 
   const onSubmit = (values: ILoginBody) => {
     loginApi(values)
   }
-
-
-  const { loginApi, waitingForAuthorize } = useFakeLogin();
-  const { t } = useTranslation();
-  const { navigateToRegister } = useRedirect();
-  const { passwordRules } = useInputRules();
 
   return (
     <Card className="w-96">
